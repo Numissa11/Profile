@@ -4,30 +4,46 @@ class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      flash: "",
       name: "",
       lastname: "",
       email: "",
-      password: "",
-      passwordconf: "",
+      password: "",      
     };
   }
 
   handleChange = (event) => {
-    const name = event.target.name
-    const value = event.target.value
-    this.setState({ 
-      [name]: value
-     });
+    const name = event.target.name;
+    const value = event.target.value;
+    this.setState({
+      [name]: value,
+    });
     console.log(this.state);
+  };
+
+  getData = () => {
+    const { flash, ...newUser } = this.state;
+    fetch('/auth/signup', {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify(newUser),
+    })
+      .then((res) => res.json())
+      .then(
+        (res) => this.setState({ flash: res.flash }),
+        (err) => this.setState({ flash: err.flash }),
+      );
     
   };
 
   handleSubmit = (event) => {
-    let stateValue = this.state
-    console.log("A name was submitted:", stateValue)
     event.preventDefault();
+    this.getData();
+  };
 
-  }
+
 
   render() {
     return (
@@ -63,15 +79,16 @@ class SignUp extends React.Component {
             name="password"
             onChange={this.handleChange}
           />
-          <input
+          {/* <input
             id="passwordconf"
             placeholder="confirm your password"
             value={this.state.passwordconf}
             name="passwordconf"
             onChange={this.handleChange}
-          />
-            <button type="submit" value="Submit" onClick={this.handleSubmit}>Search</button>
-
+          /> */}
+          <button type="submit" value="Submit" onClick={this.handleSubmit}>
+            Send
+          </button>
         </form>
       </div>
     );
