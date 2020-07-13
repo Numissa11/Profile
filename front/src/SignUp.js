@@ -1,14 +1,17 @@
 import React from "react";
+import './SignUp.css'
+import { Button, Snackbar, TextField } from '@material-ui/core';
 
 class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      flash: "",
       name: "",
       lastname: "",
       email: "",
-      password: "",      
+      password: "",
+      flash: "",
+      openSnackbar: false     
     };
   }
 
@@ -21,76 +24,95 @@ class SignUp extends React.Component {
     console.log(this.state);
   };
 
-  getData = () => {
-    const { flash, ...newUser } = this.state;
-    fetch('/auth/signup', {
+  
+  handleSubmit = (event) => {
+    const { flash, openSnackbar, ...newUser } = this.state;
+    event.preventDefault();
+    console.log(newUser);
+    
+    fetch('/auth/signup',
+    {
       method: 'POST',
       headers: new Headers({
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       }),
       body: JSON.stringify(newUser),
     })
-      .then((res) => res.json())
-      .then(
-        (res) => this.setState({ flash: res.flash }),
-        (err) => this.setState({ flash: err.flash }),
-      );
-    
+    .then(res => res.json())
+    .then(
+      res => this.setState({flash: res.flash}),
+      err => this.setState({flash: err.flash}),
+    ).then(
+      this.setState({ openSnackbar: true })
+    )
   };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    this.getData();
+  handleCloseSnackbar = () => {
+    this.setState({ openSnackbar: false });
   };
-
 
 
   render() {
-    return (
-      <div style={{ width: "1500px" }}>
-        <h1>{JSON.stringify(this.state)}</h1>
+    const titleJSON = JSON.stringify(this.state);
+    console.log("JSON file", titleJSON);
 
+    const { flash, openSnackbar } = this.state;
+    console.log("snack", openSnackbar);
+
+    return (
+      <div>
+        <h1 className="sign">Sign up!</h1>
+        <div className="form-section">
         <form>
-          <input
+        <div>Name</div>
+          <TextField
             id="name"
             placeholder="enter your name"
             value={this.state.name}
             name="name"
             onChange={this.handleChange}
           />
-          <input
+          <div>Lastname</div>
+          <TextField
             id="lastname"
             placeholder="enter your lastname"
             value={this.state.lastname}
             name="lastname"
             onChange={this.handleChange}
           />
-          <input
+          <div>E-mail</div>
+          <TextField
             id="email"
-            placeholder="enter your email"
+            placeholder="enter your e-mail"
             value={this.state.email}
             name="email"
             onChange={this.handleChange}
           />
-          <input
+          <div>Password</div>
+          <TextField
             id="password"
             placeholder="enter your password"
             value={this.state.password}
             name="password"
             onChange={this.handleChange}
           />
-          {/* <input
-            id="passwordconf"
-            placeholder="confirm your password"
-            value={this.state.passwordconf}
-            name="passwordconf"
-            onChange={this.handleChange}
-          /> */}
-          <button type="submit" value="Submit" onClick={this.handleSubmit}>
+        
+          <div className="button-section">
+          <Button variant="contained" color="primary" onClick={this.handleSubmit}>
             Send
-          </button>
+          </Button>
+          </div>
+          <Snackbar
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+              open={openSnackbar}
+              onClose={this.handleCloseSnackbar}
+              message={flash}
+            >
+            </Snackbar>
         </form>
       </div>
+      </div>
+
     );
   }
 }
