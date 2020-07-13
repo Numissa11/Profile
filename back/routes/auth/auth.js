@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const connection = require('../../sql/helpers/db');
 
-// http://localhost:3000/auth/signup
+// http://localhost:5000/auth/signup
 router.post('/signup', function(req, res, next) {
         const userData = req.body;
         connection.query('INSERT INTO users SET ?', userData, (err, results) => {
