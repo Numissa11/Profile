@@ -45,7 +45,7 @@ class Profile extends React.Component {
          
 <div className="button-section logout">
               <Link to="/login">
-                <Button variant="contained" color="primary">
+                <Button variant="contained" color="secondary">
                   Log Out
                 </Button>
               </Link>
