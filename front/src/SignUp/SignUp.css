@@ -10,6 +10,10 @@
       color: #303FA0;
     }
     
+    img {
+      margin-top: 10%;
+    }
+    
     form {
       display: flex;
       flex-direction: column;
@@ -22,6 +26,7 @@
     }
     
     .form-section {
+      margin-top: 10%;
       display: flex;
       flex-wrap: wrap;
       flex-direction:column;

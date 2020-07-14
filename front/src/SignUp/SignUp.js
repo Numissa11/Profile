@@ -1,6 +1,9 @@
 import React from "react";
 import './SignUp.css'
-import { Button, Snackbar, TextField } from '@material-ui/core';
+import { Button, Snackbar, TextField, IconButton } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
+import { Link } from "react-router-dom";
+
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -49,8 +52,9 @@ class SignUp extends React.Component {
 
   handleCloseSnackbar = () => {
     this.setState({ openSnackbar: false });
+    this.props.history.push({pathname: '/'});
   };
-
+ 
 
   render() {
     const titleJSON = JSON.stringify(this.state);
@@ -98,17 +102,52 @@ class SignUp extends React.Component {
           />
         
           <div className="button-section">
+          
           <Button variant="contained" color="primary" onClick={this.handleSubmit}>
             Send
           </Button>
+         
+
           </div>
-          <Snackbar
-              anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-              open={openSnackbar}
-              onClose={this.handleCloseSnackbar}
-              message={flash}
-            >
-            </Snackbar>
+
+          <div className="button-section">
+              <Link to="/login">
+                <Button variant="contained" color="primary">
+                  Log In
+                </Button>
+              </Link>
+            </div>
+
+            <Snackbar
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center',
+            }}
+            open={openSnackbar}
+            autoHideDuration={2000}
+            onClose={this.handleCloseSnackbar}
+            message={flash}
+            action={
+              <React.Fragment>
+                <Button
+                  className="button"
+                  color="secondary"
+                  size="small"
+                  onClick={this.handleClose}
+                >
+                  UNDO
+                </Button>
+                <IconButton
+                  size="small"
+                  aria-label="close"
+                  color="inherit"
+                  onClick={this.handleCloseSnackbar}
+                >
+                  <CloseIcon fontSize="small" />
+                </IconButton>
+              </React.Fragment>
+            }
+          />
         </form>
       </div>
       </div>
