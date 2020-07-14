@@ -1,6 +1,7 @@
 import React from "react";
 import './Profile.css'
-import { ListItemText, ListItem, List } from '@material-ui/core';
+import { ListItemText, ListItem, List, Button } from '@material-ui/core';
+import { Link } from "react-router-dom";
 
 class Profile extends React.Component {
   constructor(props) {
@@ -18,9 +19,9 @@ class Profile extends React.Component {
   render() {
 
     return (
-      <div>
+      <div className="box">
         <h1 className="sign">Profile</h1>
-        <div className="form-section">
+       
 
 <List>
     <ListItem>
@@ -42,8 +43,14 @@ class Profile extends React.Component {
     </ListItem>
 </List>
          
-      
-      </div>
+<div className="button-section logout">
+              <Link to="/login">
+                <Button variant="contained" color="primary">
+                  Log Out
+                </Button>
+              </Link>
+            </div>
+
       </div>
 
 

@@ -1,6 +1,7 @@
 import React from "react";
-import "./Login.css";
+import "./LogIn.css";
 import { Button, TextField } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 class LogIn extends React.Component {
   constructor(props) {
@@ -20,24 +21,14 @@ class LogIn extends React.Component {
     console.log(this.state);
   };
 
-  handleSubmit = (event) => {
-    const { ...newUser } = this.state;
+  handleLogin = (event) => {
     event.preventDefault();
-    console.log(newUser);
-
-    fetch("/auth/signin", {
-      method: "POST",
-      headers: new Headers({
-        "Content-Type": "application/json",
-      }),
-      body: JSON.stringify(newUser),
-    }).then((res) => res.json());
   };
 
   render() {
     return (
       <div>
-        <h1 className="sign">Log in!</h1>
+        <h1 className="sign">Sign in!</h1>
         <div className="form-section">
           <form>
             <div>E-mail</div>
@@ -58,13 +49,23 @@ class LogIn extends React.Component {
             />
 
             <div className="button-section">
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={this.handleSubmit}
-              >
-                Login
-              </Button>
+              <Link to="/profile">
+                <Button variant="contained" color="primary">
+                  Log In
+                </Button>
+              </Link>
+            </div>
+
+            <div className="button-section">
+              <Link to="/signup">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="small"
+                >
+                  Sign Up
+                </Button>
+              </Link>
             </div>
           </form>
         </div>
