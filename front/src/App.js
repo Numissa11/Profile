@@ -1,7 +1,7 @@
 import React from "react";
 import { MuiThemeProvider, Grid, Paper } from '@material-ui/core';
 import './index.css';
-import SignUp from "./SignUp";
+import Profile from "./Profile/Profile";
 
 
 class App extends React.Component {
@@ -22,7 +22,7 @@ class App extends React.Component {
                   <img src="https://i.pinimg.com/originals/22/6a/59/226a59abacc9c9bc41a2907e63d8aea8.jpg" alt="Homer" />
                 </Grid>
                 <Grid item xs={12} sm={6} >
-                  <SignUp  />
+                  <Profile  />
                 </Grid>
               </Grid>
             </Paper>

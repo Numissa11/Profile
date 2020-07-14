@@ -22,6 +22,7 @@
     }
     
     .form-section {
+          margin-top: 20%;
       display: flex;
       flex-wrap: wrap;
       flex-direction:column;
