@@ -4,7 +4,7 @@
       "description": "Wild server",
       "main": "app.js",
       "scripts": {
-            "start": "nodemon app.js"
+            "start": "nodemon node app.js"
       },
       "author": "wilder",
       "dependencies": {
