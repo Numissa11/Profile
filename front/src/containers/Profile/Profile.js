@@ -1,45 +1,57 @@
 import React from 'react';
-import { connect } from  'react-redux';
+import { connect } from 'react-redux';
 import { List, ListItem, ListItemText, Button } from '@material-ui/core';
-import { Link }  from 'react-router-dom';
+
+
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
-    this.state  = {
+    this.state = {
       profile: {
-        email:  "yourEmail@gmail.com",
-        name:  "Tom",
-        lastname:  "Jerry"
+        email: "yourEmail@gmail.com",
+        name: "Tom",
+        lastname: "Jerry"
       }
     }
   }
 
-  componentDidMount = () => {
-    console.log("profile");
-    fetch('/auth/profile',
-      {
+
+  componentDidMount() {
+    if (this.props.token) {
+      // http://localhost:5000/auth/profile
+      fetch("/auth/profile", {
+        method: "GET",
         headers: {
-         'Authorization': 'Bearer ' + this.props.token,
-        }
+          Authorization: "Bearer " + this.props.token,
+        },
       })
-    .then(res => res.json())
-    .then(res => {this.setState({ profile: res })})
+        .then((res) => res.json())
+        .then(res => this.setState(res));
+    }
   }
+
+  getSignOut = () => {
+    console.log("sign out");
+    //this.props.dispatch({ type: "" });
+    this.props.history.push({ pathname: '/signin' });
+  }
+
 
 
 
   getSignOut = () => {
-    const { history } = this.props;
-    console.log("sign out");
-    // this.props.dispatch({ type: "" });
-   history.push({pathname: '/'});
+
+    //  this.props.history.push({ pathname: '/signin' });
   }
 
-  render() {
-    const { email , name, lastname } = this.state.profile;
 
-    return(
+
+
+  render() {
+    const { email, name, lastname } = this.state.profile;
+    console.log(this.props)
+    return (
       <div className="Profile">
         <List>
           <ListItem>
@@ -53,14 +65,18 @@ class Profile extends React.Component {
           </ListItem>
         </List>
 
+        <Button variant="contained" color="primary" onClick={this.getSignOut}>Sign Out</Button>
+
+
       </div>
     );
   }
 }
 
-function  mapStateToProps(state) {
+function mapStateToProps(state) {
   return {
     token: state.auth.token,
+    user: state.auth.user
   }
 };
 
