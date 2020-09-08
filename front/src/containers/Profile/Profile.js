@@ -31,6 +31,9 @@ class Profile extends React.Component {
     }
   }
 
+
+
+
   getSignOut = () => {
     console.log("sign out");
     //this.props.dispatch({ type: "" });
@@ -39,18 +42,9 @@ class Profile extends React.Component {
 
 
 
-
-  getSignOut = () => {
-
-    //  this.props.history.push({ pathname: '/signin' });
-  }
-
-
-
-
   render() {
-    const { email, name, lastname } = this.state.profile;
-    console.log(this.props)
+   const { email, name, lastname } = this.props.user
+    console.log('props', this.props)
     return (
       <div className="Profile">
         <List>
