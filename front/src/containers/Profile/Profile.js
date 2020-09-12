@@ -54,11 +54,11 @@ class Profile extends React.Component {
           </ListItem>
           <ListItem>
             <ListItemText primary="Name" 
-            secondary={this.props.user.name ? this.props.username : null} />
+            secondary={this.props.user.name ? this.props.user.name : null} />
           </ListItem>
           <ListItem>
             <ListItemText primary="Last Name" 
-            secondary={this.props.user.lastname ? this.props.userlastname : null} />
+            secondary={this.props.user.lastname ? this.props.user.lastname : null} />
           </ListItem>
         </List>
 
