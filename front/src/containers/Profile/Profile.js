@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { List, ListItem, ListItemText, Button } from '@material-ui/core';
-
+import { List, ListItem, ListItemText } from '@material-ui/core';
+import './Profile.css'
+// import { Button } from '@material-ui/core';
 
 
 class Profile extends React.Component {
@@ -11,7 +12,8 @@ class Profile extends React.Component {
       profile: {
         email: "yourEmail@gmail.com",
         name: "Tom",
-        lastname: "Jerry"
+        lastname: "Jerry",
+        redirect: false
       }
     }
   }
@@ -32,21 +34,21 @@ class Profile extends React.Component {
   }
 
 
-
-
-  getSignOut = () => {
+  getOut = () => {
     console.log("sign out");
-    //this.props.dispatch({ type: "" });
-    this.props.history.push({ pathname: '/signin' });
+    this.setState({ redirect: true }) 
+    
   }
-
 
 
   render() {
   //  const { email, name, lastname } = this.props.user
+
     console.log('props', this.props)
     return (
-      <div className="Profile">
+      <div >
+        <div className='MyProfile'>My Awesome profile</div>
+        <div className="Profile">
         <List>
           <ListItem>
             <ListItemText primary="Email" 
@@ -62,8 +64,13 @@ class Profile extends React.Component {
           </ListItem>
         </List>
 
-        <Button variant="contained" color="primary" onClick={this.getSignOut}>Sign Out</Button>
+        </div>
+       
 
+        
+       {/* { <Button variant="contained" color="primary" onClick={this.getOut}  secondary={this.state.redirect ? (<Redirect push to="/"/>) : null}>Sign Out</Button>} */}
+          
+       
 
       </div>
     );
