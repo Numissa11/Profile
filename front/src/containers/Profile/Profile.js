@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { List, ListItem, ListItemText } from '@material-ui/core';
 import './Profile.css'
-// import { Button } from '@material-ui/core';
 
 
 class Profile extends React.Component {
@@ -34,6 +33,12 @@ class Profile extends React.Component {
   }
 
 
+  getOut = () => {
+    console.log("sign out");
+    this.setState({ redirect: true }) 
+    
+  }
+
 
   render() {
   //  const { email, name, lastname } = this.props.user
@@ -59,8 +64,7 @@ class Profile extends React.Component {
         </List>
 
         </div>
-       
-    
+      
 
       </div>
     );
