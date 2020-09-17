@@ -1,3 +1,26 @@
 .box {
       padding-right: 5%;
 }
+
+.MyProfile {
+      color:rgb(92, 36, 36);
+      font-weight: 600;
+      font-size: 35px;
+      text-align: center;
+      border-style: dashed;
+      line-height: 5rem;
+      background-color: rgb(212, 161, 156);
+      margin-right: 20px;
+      margin-bottom: 10px;
+}
+
+.Profile {
+      color:rgb(204, 17, 17);
+      font-weight: 600;
+      font-size: 35px;
+      text-align: center;
+      border-style: dashed;
+      line-height: 5rem;
+      background-color: rgb(247, 219, 216);
+      margin-right: 20px;
+}

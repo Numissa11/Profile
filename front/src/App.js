@@ -24,7 +24,7 @@ function App() {
                 <Grid item xs={12} sm={6} alignContent="center">
                   <BrowserRouter>
                     <Switch>
-                      <Redirect exact from="/" to="/profile" />
+                      <Redirect exact from="/" to="/signin" />
                       <Route
                         exact
                         path="/profile"
