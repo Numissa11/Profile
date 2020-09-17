@@ -31,22 +31,6 @@ class Profile extends React.Component {
     }
   }
 
-  getSignOut = () => {
-    console.log("sign out");
-    //this.props.dispatch({ type: "" });
-    this.props.history.push({ pathname: '/signin' });
-  }
-
-
-
-
-  getSignOut = () => {
-
-    //  this.props.history.push({ pathname: '/signin' });
-  }
-
-
-
 
   render() {
     const { email, name, lastname } = this.state.profile;
@@ -65,7 +49,6 @@ class Profile extends React.Component {
           </ListItem>
         </List>
 
-        <Button variant="contained" color="primary" onClick={this.getSignOut}>Sign Out</Button>
 
 
       </div>
