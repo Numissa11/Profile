@@ -34,12 +34,6 @@ class Profile extends React.Component {
   }
 
 
-  getOut = () => {
-    console.log("sign out");
-    this.setState({ redirect: true }) 
-    
-  }
-
 
   render() {
   //  const { email, name, lastname } = this.props.user
@@ -66,11 +60,7 @@ class Profile extends React.Component {
 
         </div>
        
-
-        
-       {/* { <Button variant="contained" color="primary" onClick={this.getOut}  secondary={this.state.redirect ? (<Redirect push to="/"/>) : null}>Sign Out</Button>} */}
-          
-       
+    
 
       </div>
     );
