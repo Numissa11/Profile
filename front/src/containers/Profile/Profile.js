@@ -11,8 +11,7 @@ class Profile extends React.Component {
       profile: {
         email: "yourEmail@gmail.com",
         name: "Tom",
-        lastname: "Jerry",
-        redirect: false
+        lastname: "Jerry"
       }
     }
   }
@@ -33,11 +32,6 @@ class Profile extends React.Component {
   }
 
 
-  getOut = () => {
-    console.log("sign out");
-    this.setState({ redirect: true }) 
-    
-  }
 
 
   render() {
